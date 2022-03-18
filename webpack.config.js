@@ -1,22 +1,30 @@
 module.exports = {
-  entry: './src/universal/app.jsx',
+  entry: {
+    bundle: './src/universal/app.jsx'
+  },
   output: {
-    filename: 'bundle.js',
+    filename: '[name].js',
     path: `${__dirname}/build/static/js`
   },
   module: {
       rules: [
           {
             test: /\.m?jsx?$/,
-            exclude: /(node_modules|bower_components)/,
+            exclude: /node_modules/,
             use: {
               loader: 'babel-loader',
               options: {
-                presets: ['@babel/preset-env'],
-                plugins: ['@babel/plugin-transform-react-jsx']
+                presets: [
+                  '@babel/preset-env',
+                  '@babel/preset-react'
+                ]
               }
             }
           }
         ]
+  },
+  devtool: 'inline-cheap-source-map',
+  optimization: {
+    runtimeChunk: 'single'
   }
 };

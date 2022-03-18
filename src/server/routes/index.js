@@ -1,4 +1,4 @@
-const root = require('./root.js');
+import root from './root.js';
 
 module.exports = [
     root
