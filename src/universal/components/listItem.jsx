@@ -2,44 +2,66 @@ import React from 'react';
 import styled from 'styled-components';
 
 const ListItem = styled.li`
-    border: 1px solid #d6d6d6;
+    border: ${props => props.completed ? "none" : "1px solid #d6d6d6"};
     border-radius: 4px;
     padding: 16px 16px 16px 0;
     margin-bottom: 12px;
     display: flex;
     align-items: center;
     min-width: 300px;
+    background: ${props => props.completed ? "#f8fafc" : "#ffffff"};
 `
 
 const ItemInfo = styled.div`
     flex-grow: 1;
 `;
 
-const Checkbox = styled.input`
+const Checkbox = styled.div`
     margin: 0 20px;
+    color: #ffffff;
+    width: 16px;
+    height: 16px;
+    border: 2px solid;
+    border-radius: 2px;
+    background: ${props => props.completed ? "#4d81b7" : "#ffffff"};
+    border-color: ${props => props.completed ? "#4d81b7" : "#c6c6c6"};
+    cursor: pointer;
 `;
 
 const ItemName = styled.p`
-    color: #000000;
+    color: ${props => props.completed ? "#4d81b7" : "#000000"};
+    text-decoration: ${props => props.completed ? "line-through" : "none"};
     line-height: 2em;
     font-weight: bold;
 `;
 
 const ItemDescription = styled.p`
+    text-decoration: ${props => props.completed ? "line-through" : "none"};
     font-size: 0.9em;
-    color: #9c9c9c;
+    color: #7d7a7a;
 `;
 
-export default ({listItem}) => (
-    <ListItem>
-        <Checkbox type="checkbox" />
+const Controls = styled.div`
+    > div {
+        margin: 12px;
+        color: #555f7c;
+    }
+`;
+
+export default ({ name, description, completed }) => (
+    <ListItem completed={completed}>
+        <Checkbox completed={completed}>
+            {completed && (
+                <div className="material-icons md-16">done</div>
+            ) }
+        </Checkbox>
         <ItemInfo>
-            <ItemName>{listItem.name}</ItemName>
-            <ItemDescription>{listItem.description}</ItemDescription>
+            <ItemName  completed={completed}>{name}</ItemName>
+            <ItemDescription completed={completed}>{description}</ItemDescription>
         </ItemInfo>
-        <div>
+        <Controls>
             <div className="material-icons-outlined">edit</div>
             <div className="material-icons-outlined">delete</div>
-        </div>
+        </Controls>
     </ListItem>
 )

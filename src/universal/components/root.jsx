@@ -9,7 +9,8 @@ const listItems = [
         name: 'Test Item',
         description: 'Test item description',
         count: 1,
-        id: '11111'
+        id: '11111',
+        completed: true
     },
     {
         name: 'Test Item 2',
