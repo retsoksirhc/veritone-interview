@@ -4,9 +4,9 @@ import {create} from 'express-handlebars';
 import { graphqlHTTP } from 'express-graphql';
 import { buildSchema } from 'graphql';
 
-import routes from './routes/index.js';
-import gqlSchema from './gql/schema.js';
-import gqlResolvers from './gql/resolvers.js';
+import routes from './routes/index';
+import gqlSchema from './gql/schema';
+import gqlResolvers from './gql/resolvers';
 
 const port = 3000;
 

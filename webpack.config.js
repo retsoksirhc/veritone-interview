@@ -26,5 +26,8 @@ module.exports = {
   devtool: 'inline-cheap-source-map',
   optimization: {
     runtimeChunk: 'single'
+  },
+  resolve: {
+    extensions: ['.js', '.jsx']
   }
 };

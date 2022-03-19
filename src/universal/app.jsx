@@ -6,7 +6,7 @@ import {
     ApolloProvider
 } from '@apollo/client';
 
-import ShoppingList from './shoppingList.jsx';
+import ShoppingList from './components/root';
 
 const client = new ApolloClient({
     uri: '/graphql',

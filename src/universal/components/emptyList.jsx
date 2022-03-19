@@ -1,19 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Header = styled.div`
-    color: #fefefe;
-    background: #4d81b7;
-    font-family: 'Dosis', sans-serif;
-    padding: 22px;
-    font-size: 1.2em;
-    font-weight: 500;
-`
-
 const EmptyList = styled.div`
     border: 1px solid #c6c6c6;
     max-width: 530px;
-    margin: 64px auto;
+    margin: 108px auto;
     padding: 40px;
     text-align: center;
     border-radius: 4px;
@@ -25,7 +16,7 @@ const EmptyList = styled.div`
     font-family: 'Nunito', sans-serif;
 `;
 
-const AddFirstButton = styled.button`
+const AddFirstItemButton = styled.button`
     background: #1871e8;
     color: #ffffff;
     padding: 8px 16px;
@@ -41,7 +32,7 @@ const AddFirstButton = styled.button`
     font-family: inherit;
 `
 
-const AddFirstCopy = styled.p`
+const AddFirstItemCopy = styled.p`
     position: relative;
     transform: translateY(-2em);
     height: 0;
@@ -49,13 +40,10 @@ const AddFirstCopy = styled.p`
 `;
 
 export default () => (
-    <>
-        <Header>SHOPPING LIST</Header>
-        <EmptyList>
-            <div>
-                <AddFirstCopy>Your shopping list is empty :(</AddFirstCopy>
-                <AddFirstButton>Add your first item</AddFirstButton>
-            </div>
-        </EmptyList>
-    </>
-)
+    <EmptyList>
+        <div>
+            <AddFirstItemCopy>Your shopping list is empty :(</AddFirstItemCopy>
+            <AddFirstItemButton>Add your first item</AddFirstItemButton>
+        </div>
+    </EmptyList>
+);
