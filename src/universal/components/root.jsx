@@ -29,7 +29,7 @@ const listItems = [
         count: 4,
         id: '44444'
     }
-]
+];
 
 export default () => {
     const ListComponent = listItems && listItems.length > 0 ? PopulatedList : EmptyList

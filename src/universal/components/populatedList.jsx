@@ -10,7 +10,7 @@ const Container = styled.div`
 `;
 
 const List = styled.ul`
-    margin-top: 16px;
+    margin-top: 12px;
 `;
 
 
