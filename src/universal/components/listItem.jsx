@@ -50,12 +50,8 @@ margin: 0 20px;
 export default ({ name, description, completed, count, id }) => {
     const [ isEditModalOpen, setIsEditModalOpen ] = React.useState(false);
     const [ isDeleteModalOpen, setIsDeleteModalOpen ] = React.useState(false);
-    const [ isItemCompleted, setIsItemCompleted ] = React.useState(completed);
     const toggleEditModal = () => setIsEditModalOpen(!isEditModalOpen);
     const toggleDeleteModal = () => setIsDeleteModalOpen(!isDeleteModalOpen);
-    const toggleCompleted = () => {
-        setIsItemCompleted(!isItemCompleted);
-    }
 
     const [ editItem ] = useMutation(GqlOps.UPDATE_ITEM, {
         refetchQueries: [
@@ -63,22 +59,20 @@ export default ({ name, description, completed, count, id }) => {
         ]
     });
 
-    useEffect(() => {
-        if (isItemCompleted != item.completed) {
-            editItem({
-                variables: {
-                    id: item.id,
-                    item: {
-                        name,
-                        description,
-                        count,
-                        id,
-                        completed: isItemCompleted
-                    }
+    const toggleCompleted = () => {
+        editItem({
+            variables: {
+                id: item.id,
+                item: {
+                    name,
+                    description,
+                    count,
+                    id,
+                    completed: !completed
                 }
-            });
-        }
-    }, [isItemCompleted]);
+            }
+        });
+    }
 
     const item = {
         name,
@@ -90,7 +84,7 @@ export default ({ name, description, completed, count, id }) => {
     return (
         <ListItem completed={completed}>
             <CheckboxWrapper>
-                <Checkbox completed={isItemCompleted} toggleCompleted={toggleCompleted} />
+                <Checkbox completed={completed} toggleCompleted={toggleCompleted} />
             </CheckboxWrapper>
 
             <ItemInfo>

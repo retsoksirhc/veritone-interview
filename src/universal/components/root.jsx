@@ -10,13 +10,13 @@ export default () => {
     const { loading, error, data } = useQuery(GqlOps.GET_ITEMS);
 
     if (loading) {
-        return <div>Loading...</div>;
+       //  return <div>Loading...</div>;
     }
     if (error) {
         return <div>Error! {error.message}</div>;
     }
 
-    const listItems = data.getItems;
+    const listItems = data?.getItems || [];
 
     const ListComponent = listItems && listItems.length > 0 ? PopulatedList : EmptyList
     return (
