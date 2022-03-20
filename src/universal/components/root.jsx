@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Header from './header';
-import EmptyList from './emptyList';
-import PopulatedList from './populatedList';
+import Header from './Header';
+import EmptyList from './EmptyList';
+import PopulatedList from './PopulatedList';
 
 const listItems = [
     {

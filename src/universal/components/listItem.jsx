@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import Checkbox from './Checkbox';
+
 const ListItem = styled.li`
     border: ${props => props.completed ? "none" : "1px solid #d6d6d6"};
     border-radius: 4px;
@@ -14,18 +16,6 @@ const ListItem = styled.li`
 
 const ItemInfo = styled.div`
     flex-grow: 1;
-`;
-
-const Checkbox = styled.div`
-    margin: 0 20px;
-    color: #ffffff;
-    width: 16px;
-    height: 16px;
-    border: 2px solid;
-    border-radius: 2px;
-    background: ${props => props.completed ? "#4d81b7" : "#ffffff"};
-    border-color: ${props => props.completed ? "#4d81b7" : "#c6c6c6"};
-    cursor: pointer;
 `;
 
 const ItemName = styled.p`
