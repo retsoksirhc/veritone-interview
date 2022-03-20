@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOMServer from 'react-dom/server';
 import fetch from 'isomorphic-fetch';
 import {
     ApolloClient,
@@ -10,22 +9,22 @@ import {
 import { getDataFromTree } from '@apollo/client/react/ssr';
 
 import ShoppingList from '../../universal/components/root';
-import gqlSchema from '../gql/schema';
-import gqlResolvers from '../gql/resolvers';
+
 
 const apolloClient = new ApolloClient({
     ssrMode: true,
     link: createHttpLink({
         uri: 'http://localhost:3000/graphql',
+        fetch
     }),
     cache: new InMemoryCache(),
     defaultOptions: {
         watchQuery: {
-            fetchPolicy: 'no-cache',
+            fetchPolicy: 'cache-and-network',
             errorPolicy: 'all'
         },
         query: {
-            fetchPolicy: 'no-cache',
+            fetchPolicy: 'cache-and-network',
             errorPolicy: 'all'
         }
     }
