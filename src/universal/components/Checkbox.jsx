@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 export default styled.div`
-    margin: 0 20px;
     color: #ffffff;
     width: 16px;
     height: 16px;

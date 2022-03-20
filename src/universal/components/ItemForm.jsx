@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
+import Checkbox from './Checkbox';
+
 const FormWrapper = styled.div`
     margin: 0 32px 32px;
     display: flex;
@@ -43,6 +45,14 @@ const CharCounter = styled.p`
     color: #7d7a7a;
 `;
 
+const CompletedWrapper = styled.p`
+    margin-top: 12px;
+    display: flex;
+    > p {
+        margin-left: 8px;
+    }
+`;
+
 const generateInputHandler = (setter, validation = () => true) => (e) => {
     const { value } = e.target;
     if (validation(value)) {
@@ -52,10 +62,10 @@ const generateInputHandler = (setter, validation = () => true) => (e) => {
 
 
 
-export default () => {
-    const [ name, setName ] = useState('');
-    const [ description, setDescription ] = useState('');
-    const [ count, setCount ] = useState(1);
+export default ({item, isCompletedEnabled}) => {
+    const [ name, setName ] = useState(item?.name || '');
+    const [ description, setDescription ] = useState(item?.description || '');
+    const [ count, setCount ] = useState(item?.count || 1);
 
     const nameInputHandler = generateInputHandler(setName);
     const descriptionInputHandler = generateInputHandler(setDescription, value => value.length <= 100);
@@ -69,6 +79,16 @@ export default () => {
                 <CharCounter>{description.length}/100</CharCounter>
             </TextareaWrapper>
             <Input type="number" placeholder="How many?" min="1" value={count} onChange={countInputHandler} />
+            {isCompletedEnabled && (
+                <CompletedWrapper>
+                    <Checkbox completed={item?.completed}>
+                        {item?.completed && (
+                            <div className="material-icons md-16">done</div>
+                        ) }
+                    </Checkbox>
+                    <p>Purchased</p>
+                </CompletedWrapper>
+            )}
         </FormWrapper>
     );
 };

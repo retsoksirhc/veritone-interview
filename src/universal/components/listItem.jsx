@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Checkbox from './Checkbox';
+import EditItemModal from './EditItemModal';
 
 const ListItem = styled.li`
     border: ${props => props.completed ? "none" : "1px solid #d6d6d6"};
@@ -35,23 +36,40 @@ const Controls = styled.div`
     > div {
         margin: 12px;
         color: #555f7c;
+        cursor: pointer;
     }
 `;
 
-export default ({ name, description, completed }) => (
-    <ListItem completed={completed}>
-        <Checkbox completed={completed}>
-            {completed && (
-                <div className="material-icons md-16">done</div>
-            ) }
-        </Checkbox>
-        <ItemInfo>
-            <ItemName  completed={completed}>{name}</ItemName>
-            <ItemDescription completed={completed}>{description}</ItemDescription>
-        </ItemInfo>
-        <Controls>
-            <div className="material-icons-outlined">edit</div>
-            <div className="material-icons-outlined">delete</div>
-        </Controls>
-    </ListItem>
-)
+const CompletedCheckbox = styled(Checkbox)`
+    margin: 0 20px;
+`;
+
+export default ({ name, description, completed, count, id }) => {
+    const [isEditModalOpen, setIsEditModalOpen] = React.useState(false);
+    const toggleEditModal = () => setIsEditModalOpen(!isEditModalOpen);
+    const item = {
+        name,
+        description,
+        completed,
+        count,
+        id
+    }
+    return (
+        <ListItem completed={completed}>
+            <CompletedCheckbox completed={completed}>
+                {completed && (
+                    <div className="material-icons md-16">done</div>
+                ) }
+            </CompletedCheckbox>
+            <ItemInfo>
+                <ItemName  completed={completed}>{name}</ItemName>
+                <ItemDescription completed={completed}>{description}</ItemDescription>
+            </ItemInfo>
+            <Controls>
+                <div className="material-icons-outlined" onClick={toggleEditModal}>edit</div>
+                <div className="material-icons-outlined">delete</div>
+            </Controls>
+            <EditItemModal isModalOpen={isEditModalOpen} toggleModal={toggleEditModal} item={item}/>
+        </ListItem>
+    );
+            };
