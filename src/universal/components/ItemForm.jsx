@@ -3,11 +3,14 @@ import styled from 'styled-components';
 
 import Checkbox from './Checkbox';
 
+const MAX_COUNT = 99;
+
 const FormWrapper = styled.div`
     margin: 0 32px 32px;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    color: #9ca8b4;
 `;
 
 const Input = styled.input`
@@ -17,6 +20,40 @@ const Input = styled.input`
     margin: 8px 0;
     font-size: 0.9em;
     font-family: Nunito, sans-serif;
+    color: inherit;
+`;
+
+const SelectWrapper = styled.div`
+    position: relative;
+`;
+
+const Select = styled.select`
+    padding: 16px;
+    border: 1px solid #d5dfe9;
+    border-radius: 4px;
+    margin: 8px 0;
+    font-size: 0.9em;
+    font-family: Nunito, sans-serif;
+    width: 100%;
+    background: transparent;
+    cursor: pointer;
+    color: inherit;
+
+    ::-ms-expand {
+        display: none;
+   }
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+`;
+
+const SelectIcon = styled.div`
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    z-index: -1;
+    color: #555f7c;
 `;
 
 const TextareaWrapper = styled.div`
@@ -34,6 +71,7 @@ const Textarea = styled.textarea`
     flex-grow: 1;
     font-size: 0.9em;
     font-family: Nunito, sans-serif;
+    color: inherit;
 `;
 
 const CharCounter = styled.p`
@@ -50,6 +88,8 @@ const CompletedWrapper = styled.p`
     display: flex;
     > p {
         margin-left: 8px;
+        font-size: 0.9em;
+        line-height: 1.3em;
     }
 `;
 
@@ -60,7 +100,7 @@ const generateInputHandler = (setter, validation = () => true) => (e) => {
     }
 }
 
-
+const countArray = Array.from((Array(MAX_COUNT).keys())).map(key => key + 1);
 
 export default ({item, isCompletedEnabled}) => {
     const [ name, setName ] = useState(item?.name || '');
@@ -80,14 +120,15 @@ export default ({item, isCompletedEnabled}) => {
                 <Textarea placeholder="Description" value={description} onChange={descriptionInputHandler} />
                 <CharCounter>{description.length}/100</CharCounter>
             </TextareaWrapper>
-            <Input type="number" placeholder="How many?" min="1" value={count} onChange={countInputHandler} />
+            <SelectWrapper>
+                <Select type="number" placeholder="How many?" value={count} onChange={countInputHandler}>
+                    {countArray.map(num => <option value={num} key={`count_${num}`}>{num}</option>)}
+                </Select>
+                <SelectIcon className="material-icons">arrow_drop_down</SelectIcon>
+            </SelectWrapper>
             {isCompletedEnabled && (
                 <CompletedWrapper>
-                    <Checkbox completed={completed} onClick={toggleCompleted}>
-                        {item?.completed && (
-                            <div className="material-icons md-16">done</div>
-                        ) }
-                    </Checkbox>
+                    <Checkbox completed={completed} toggleCompleted={toggleCompleted} />
                     <p>Purchased</p>
                 </CompletedWrapper>
             )}

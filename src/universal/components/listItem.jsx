@@ -41,15 +41,21 @@ const Controls = styled.div`
     }
 `;
 
-const CompletedCheckbox = styled(Checkbox)`
-    margin: 0 20px;
+const CheckboxWrapper = styled.div`
+margin: 0 20px;
 `;
 
 export default ({ name, description, completed, count, id }) => {
-    const [isEditModalOpen, setIsEditModalOpen] = React.useState(false);
-    const [isDeleteModalOpen, setIsDeleteModalOpen] = React.useState(false);
+    const [ isEditModalOpen, setIsEditModalOpen ] = React.useState(false);
+    const [ isDeleteModalOpen, setIsDeleteModalOpen ] = React.useState(false);
+    const [ isItemCompleted, setIsItemCompleted ] = React.useState(completed);
     const toggleEditModal = () => setIsEditModalOpen(!isEditModalOpen);
     const toggleDeleteModal = () => setIsDeleteModalOpen(!isDeleteModalOpen);
+    const toggleCompleted = () => {
+        console.log('Toggle completed');
+        setIsItemCompleted(!isItemCompleted);
+    }
+
     const item = {
         name,
         description,
@@ -59,11 +65,10 @@ export default ({ name, description, completed, count, id }) => {
     }
     return (
         <ListItem completed={completed}>
-            <CompletedCheckbox completed={completed}>
-                {completed && (
-                    <div className="material-icons md-16">done</div>
-                ) }
-            </CompletedCheckbox>
+            <CheckboxWrapper>
+                <Checkbox completed={isItemCompleted} toggleCompleted={toggleCompleted} />
+            </CheckboxWrapper>
+
             <ItemInfo>
                 <ItemName  completed={completed}>{name}</ItemName>
                 <ItemDescription completed={completed}>{description}</ItemDescription>

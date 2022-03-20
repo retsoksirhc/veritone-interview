@@ -15,4 +15,5 @@ export default styled.button`
         background: ${props => props.primary ? "#3891ff;" : "#999999"};
     }
     font-family: inherit;
+    cursor: pointer;
 `;
