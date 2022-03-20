@@ -66,10 +66,12 @@ export default ({item, isCompletedEnabled}) => {
     const [ name, setName ] = useState(item?.name || '');
     const [ description, setDescription ] = useState(item?.description || '');
     const [ count, setCount ] = useState(item?.count || 1);
+    const [ completed, setCompleted ] = useState(item?.completed || false);
 
     const nameInputHandler = generateInputHandler(setName);
     const descriptionInputHandler = generateInputHandler(setDescription, value => value.length <= 100);
     const countInputHandler = generateInputHandler(setCount);
+    const toggleCompleted = () => setCompleted(!completed);
 
     return (
         <FormWrapper>
@@ -81,7 +83,7 @@ export default ({item, isCompletedEnabled}) => {
             <Input type="number" placeholder="How many?" min="1" value={count} onChange={countInputHandler} />
             {isCompletedEnabled && (
                 <CompletedWrapper>
-                    <Checkbox completed={item?.completed}>
+                    <Checkbox completed={completed} onClick={toggleCompleted}>
                         {item?.completed && (
                             <div className="material-icons md-16">done</div>
                         ) }
