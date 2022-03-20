@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import Checkbox from './Checkbox';
 import EditItemModal from './EditItemModal';
+import DeleteItemModal from './DeleteItemModal';
 
 const ListItem = styled.li`
     border: ${props => props.completed ? "none" : "1px solid #d6d6d6"};
@@ -46,7 +47,9 @@ const CompletedCheckbox = styled(Checkbox)`
 
 export default ({ name, description, completed, count, id }) => {
     const [isEditModalOpen, setIsEditModalOpen] = React.useState(false);
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = React.useState(false);
     const toggleEditModal = () => setIsEditModalOpen(!isEditModalOpen);
+    const toggleDeleteModal = () => setIsDeleteModalOpen(!isDeleteModalOpen);
     const item = {
         name,
         description,
@@ -67,9 +70,10 @@ export default ({ name, description, completed, count, id }) => {
             </ItemInfo>
             <Controls>
                 <div className="material-icons-outlined" onClick={toggleEditModal}>edit</div>
-                <div className="material-icons-outlined">delete</div>
+                <div className="material-icons-outlined" onClick={toggleDeleteModal}>delete</div>
             </Controls>
             <EditItemModal isModalOpen={isEditModalOpen} toggleModal={toggleEditModal} item={item}/>
+            <DeleteItemModal isModalOpen={isDeleteModalOpen} toggleModal={toggleDeleteModal} item={item}/>
         </ListItem>
     );
             };
