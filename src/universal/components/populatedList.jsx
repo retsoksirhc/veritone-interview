@@ -15,7 +15,7 @@ const List = styled.ul`
 `;
 
 
-export default ({listItems}) => (
+export default ({ listItems }) => (
     <Container>
         <ListControls />
         <List>

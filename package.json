@@ -26,7 +26,7 @@
     "express-handlebars": "^6.0.3",
     "graphql": "^15.8.0",
     "isomorphic-fetch": "^3.0.0",
-    "node-persist": "^3.1.0",
+    "node-persist": "^2.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-modal": "^3.14.4",

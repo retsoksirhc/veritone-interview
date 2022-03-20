@@ -19,7 +19,7 @@ export default buildSchema(`
     type Mutation {
         addItem(item: ListItemInput): ListItem
         updateItem(id: ID!, item: ListItemInput): ListItem
-        deleteItem(id: ID!): ID
+        deleteItem(id: ID!): ListItem
     }
 
     type Query {

@@ -1,24 +1,13 @@
 import React from 'react';
-import { gql, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 
 import Header from './Header';
 import EmptyList from './EmptyList';
 import PopulatedList from './PopulatedList';
-
-const GET_ITEMS = gql`
-    query {
-        getItems {
-            id
-            name
-            description
-            count
-            completed
-        }
-    }
-`;
+import GqlOps from '../gql/constants';
 
 export default () => {
-    const { loading, error, data } = useQuery(GET_ITEMS);
+    const { loading, error, data } = useQuery(GqlOps.GET_ITEMS);
 
     if (loading) {
         return <div>Loading...</div>;

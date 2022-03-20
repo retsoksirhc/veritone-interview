@@ -12,9 +12,9 @@ const Controls = styled.div`
     font-weight: bold;
 `;
 
-export default () => (
+export default ({ onUpdate }) => (
     <Controls>
         <p>Your Items</p>
-        <AddItemButton isListEmpty={false}>Add Item</AddItemButton>
+        <AddItemButton isListEmpty={false} onUpdate={onUpdate}>Add Item</AddItemButton>
     </Controls>
 )

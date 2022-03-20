@@ -1,21 +1,18 @@
-import React from 'react';
-import { gql, useMutation } from '@apollo/client';
-
+import React, { useEffect } from 'react';
+import { gql, useMutation } from '@apollo/client'
 import ModalWrapper from './ModalWrapper';
-
-const UPDATE_ITEM = gql`
-    mutation($id: ID! $item: ListItemInput) {
-        updateItem(id: $id item: $item) {
-            id
-        }
-    }
-`;
+import GqlOps from '../gql/constants';
 
 export default (props) => {
     const { isModalOpen, toggleModal, item } = props;
-    const [editItem, { data, loading, error }] = useMutation(UPDATE_ITEM);
+    const [ editItem ] = useMutation(GqlOps.UPDATE_ITEM, {
+        refetchQueries: [
+            GqlOps.GET_ITEMS
+        ]
+    });
     const handleButtonClick = (updatedItem) => {
         editItem({ variables: { id: item.id, item: updatedItem } });
+        toggleModal();
     };
     return (
         <ModalWrapper

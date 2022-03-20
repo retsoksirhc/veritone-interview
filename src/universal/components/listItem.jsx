@@ -76,8 +76,8 @@ export default ({ name, description, completed, count, id }) => {
                 <div className="material-icons-outlined" onClick={toggleEditModal}>edit</div>
                 <div className="material-icons-outlined" onClick={toggleDeleteModal}>delete</div>
             </Controls>
-            <EditItemModal isModalOpen={isEditModalOpen} toggleModal={toggleEditModal} item={item}/>
-            <DeleteItemModal isModalOpen={isDeleteModalOpen} toggleModal={toggleDeleteModal} item={item}/>
+            <EditItemModal isModalOpen={isEditModalOpen} toggleModal={toggleEditModal} item={item} />
+            <DeleteItemModal isModalOpen={isDeleteModalOpen} toggleModal={toggleDeleteModal} item={item} />
         </ListItem>
     );
             };
