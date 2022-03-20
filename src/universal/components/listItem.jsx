@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import { useMutation } from '@apollo/client';
 
 import Checkbox from './Checkbox';
 import EditItemModal from './EditItemModal';
 import DeleteItemModal from './DeleteItemModal';
+import GqlOps from '../gql/constants';
 
 const ListItem = styled.li`
     border: ${props => props.completed ? "none" : "1px solid #d6d6d6"};
@@ -54,6 +56,29 @@ export default ({ name, description, completed, count, id }) => {
     const toggleCompleted = () => {
         setIsItemCompleted(!isItemCompleted);
     }
+
+    const [ editItem ] = useMutation(GqlOps.UPDATE_ITEM, {
+        refetchQueries: [
+            GqlOps.GET_ITEMS
+        ]
+    });
+
+    useEffect(() => {
+        if (isItemCompleted != item.completed) {
+            editItem({
+                variables: {
+                    id: item.id,
+                    item: {
+                        name,
+                        description,
+                        count,
+                        id,
+                        completed: isItemCompleted
+                    }
+                }
+            });
+        }
+    }, [isItemCompleted]);
 
     const item = {
         name,
