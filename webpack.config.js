@@ -23,7 +23,7 @@ module.exports = {
           }
         ]
   },
-  devtool: 'inline-cheap-source-map',
+  devtool: 'inline-source-map',
   optimization: {
     runtimeChunk: 'single'
   },

@@ -20,7 +20,7 @@ const init = async() => {
     app.set('views', path.join(__dirname, 'views/'));
 
     app.use('/graphql', graphqlHTTP({
-        schema: buildSchema(gqlSchema),
+        schema: gqlSchema,
         rootValue: gqlResolvers,
         graphiql: true,
     }));

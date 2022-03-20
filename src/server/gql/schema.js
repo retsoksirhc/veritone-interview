@@ -1,4 +1,5 @@
-export default `
+import { buildSchema } from 'graphql';
+export default buildSchema(`
     input ListItemInput {
         name: String!
         description: String
@@ -23,4 +24,4 @@ export default `
     type Query {
         getItems: [ListItem]
     }
-`;
+`);

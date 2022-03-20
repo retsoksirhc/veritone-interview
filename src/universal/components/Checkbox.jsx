@@ -12,10 +12,12 @@ const Checkbox = styled.div`
     cursor: pointer;
 `;
 
+const CheckMark = styled.div`
+    visibility: ${props => props.completed ? "visible" : "hidden" };
+`
+
 export default ({ completed, toggleCompleted }) => (
     <Checkbox completed={completed} onClick={toggleCompleted}>
-        {completed && (
-            <div className="material-icons md-16">done</div>
-        ) }
+        <CheckMark className="material-icons md-16" completed={completed}>done</CheckMark>
     </Checkbox>
 );

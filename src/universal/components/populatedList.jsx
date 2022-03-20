@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import ListControls from './listControls';
-import ListItem from './listItem';
+import ListControls from './ListControls';
+import ListItem from './ListItem';
 
 const Container = styled.div`
     font-family: 'Nunito', sans-serif;

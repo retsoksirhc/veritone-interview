@@ -1,38 +1,34 @@
 import React from 'react';
+import { gql, useQuery } from '@apollo/client';
 
 import Header from './Header';
 import EmptyList from './EmptyList';
 import PopulatedList from './PopulatedList';
 
-const listItems = [
-    {
-        name: 'Test Item',
-        description: 'Test item description',
-        count: 1,
-        id: '11111',
-        completed: true
-    },
-    {
-        name: 'Test Item 2',
-        description: 'Test item 2 description',
-        count: 2,
-        id: '22222'
-    },
-    {
-        name: 'Test Item 3',
-        description: 'Test item 3 description',
-        count: 3,
-        id: '33333'
-    },
-    {
-        name: 'Test Item 4',
-        description: 'Test item 4 description',
-        count: 4,
-        id: '44444'
+const GET_ITEMS = gql`
+    query {
+        getItems {
+            id
+            name
+            description
+            count
+            completed
+        }
     }
-];
+`;
 
 export default () => {
+    const { loading, error, data } = useQuery(GET_ITEMS);
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+    if (error) {
+        return <div>Error! {error.message}</div>;
+    }
+
+    const listItems = data.getItems;
+
     const ListComponent = listItems && listItems.length > 0 ? PopulatedList : EmptyList
     return (
         <>

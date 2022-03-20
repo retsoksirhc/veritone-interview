@@ -8,9 +8,10 @@ import {
 
 import ShoppingList from './components/root';
 
+const initialState = JSON.parse(window.__INITIAL_STATE__);
 const client = new ApolloClient({
     uri: '/graphql',
-    cache: new InMemoryCache(),
+    cache: new InMemoryCache().restore(initialState)
 });
 
 ReactDOM.hydrate(
