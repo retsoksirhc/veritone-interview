@@ -9,6 +9,7 @@ export default ({ isModalOpen, toggleModal }) => (
         title="Delete Item?"
         subtitle="Are you sure you want to delete this item? This can not be undone"
         buttonText="Delete"
+        buttonAction={() => window.alert('To do')}
         isDelete
     />
 );

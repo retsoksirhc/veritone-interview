@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import Checkbox from './Checkbox';
@@ -102,16 +102,28 @@ const generateInputHandler = (setter, validation = () => true) => (e) => {
 
 const countArray = Array.from((Array(MAX_COUNT).keys())).map(key => key + 1);
 
-export default ({item, isCompletedEnabled}) => {
+export default ({item, isCompletedEnabled, onUpdate}) => {
     const [ name, setName ] = useState(item?.name || '');
     const [ description, setDescription ] = useState(item?.description || '');
     const [ count, setCount ] = useState(item?.count || 1);
     const [ completed, setCompleted ] = useState(item?.completed || false);
 
+    useEffect(() => {
+        const updatedItem = {
+            name,
+            description,
+            count: Number(count),
+            completed,
+            id: item?.id
+        }
+        onUpdate(updatedItem);
+    }, [ name, description, count, completed ]);
+
     const nameInputHandler = generateInputHandler(setName);
     const descriptionInputHandler = generateInputHandler(setDescription, value => value.length <= 100);
     const countInputHandler = generateInputHandler(setCount);
     const toggleCompleted = () => setCompleted(!completed);
+
 
     return (
         <FormWrapper>

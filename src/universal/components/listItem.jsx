@@ -52,7 +52,6 @@ export default ({ name, description, completed, count, id }) => {
     const toggleEditModal = () => setIsEditModalOpen(!isEditModalOpen);
     const toggleDeleteModal = () => setIsDeleteModalOpen(!isDeleteModalOpen);
     const toggleCompleted = () => {
-        console.log('Toggle completed');
         setIsItemCompleted(!isItemCompleted);
     }
 

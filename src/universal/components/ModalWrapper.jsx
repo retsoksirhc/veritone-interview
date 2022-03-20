@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactModal from 'react-modal';
 import styled from 'styled-components';
 
@@ -30,35 +30,43 @@ const BorderlessButton = styled(Button)`
     margin: 0 4px;
 `;
 
-export default ({ isModalOpen, toggleModal, title, subtitle, buttonText, item, isCompletedEnabled, isDelete }) => (
-    <ReactModal
-        isOpen={isModalOpen}
-        onRequestClose={toggleModal}
-        style={{
-            content: {
-                width: '100%',
-                maxWidth: isDelete ? '408px' : '450px',
-                maxHeight: isDelete ? '248px' : '600px',
-                left: '50%',
-                transform: 'translateX(-50%)',
-                padding: '0',
-                borderRadius: isDelete ? '4px' : '0',
-                boxShadow: '0 0 10px 0 #a0a0a0',
-                display: 'flex',
-                flexDirection: 'column',
-                fontFamily: 'Nunito, sans-serif',
-                fontSize: '1.1em',
-                borderBottom: isDelete ? 'none' : '4px solid #4d81b7'
-            }
-        }}
-    >
-        {!isDelete && (<Header isModal toggleModal={toggleModal} />)}
-        <Title isDelete={isDelete}>{title}</Title>
-        <Description isDelete={isDelete}>{subtitle}</Description>
-        {!isDelete && (<ItemForm item={item} isCompletedEnabled={isCompletedEnabled} />)}
-        <Controls>
-            <BorderlessButton onClick={toggleModal}>Cancel</BorderlessButton>
-            <Button primary>{buttonText}</Button>
-        </Controls>
-    </ReactModal>
-);
+export default (props) => {
+    const { isModalOpen, toggleModal, title, subtitle, buttonText, buttonAction, item, isCompletedEnabled, isDelete } = props;
+    const [ updatedItem, setUpdatedItem ] = useState(item || {});
+    const buttonClickHandler = () => {
+        buttonAction(updatedItem);
+    };
+    return (
+        <ReactModal
+            isOpen={isModalOpen}
+            onRequestClose={toggleModal}
+            style={{
+                content: {
+                    width: '100%',
+                    maxWidth: isDelete ? '408px' : '450px',
+                    maxHeight: isDelete ? '248px' : '600px',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    padding: '0',
+                    borderRadius: isDelete ? '4px' : '0',
+                    boxShadow: '0 0 10px 0 #a0a0a0',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    fontFamily: 'Nunito, sans-serif',
+                    fontSize: '1.1em',
+                    borderBottom: isDelete ? 'none' : '4px solid #4d81b7'
+                }
+            }}
+        >
+            {!isDelete && (<Header isModal toggleModal={toggleModal} />)}
+            <Title isDelete={isDelete}>{title}</Title>
+            <Description isDelete={isDelete}>{subtitle}</Description>
+            {!isDelete && (<ItemForm item={item} isCompletedEnabled={isCompletedEnabled} onUpdate={setUpdatedItem} />)}
+            <Controls>
+                <BorderlessButton onClick={toggleModal}>Cancel</BorderlessButton>
+                <Button primary onClick={buttonClickHandler}>{buttonText}</Button>
+            </Controls>
+        </ReactModal>
+    );
+};
+

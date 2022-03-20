@@ -5,6 +5,7 @@ export default buildSchema(`
         description: String
         count: Int
         completed: Boolean
+        id: ID
     }
 
     type ListItem {

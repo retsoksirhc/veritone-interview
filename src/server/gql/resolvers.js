@@ -15,6 +15,7 @@ const findItemIndex = (items, id) => {
     if (index === -1) {
         throw new Error(`Item ID ${id} was not found`);
     }
+    return index;
 }
 
 export default {
