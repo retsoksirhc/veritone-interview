@@ -16,10 +16,6 @@ export const UPDATE_ITEM = gql`
     mutation($id: ID! $item: ListItemInput) {
         updateItem(id: $id item: $item) {
             id
-            name
-            description
-            count
-            completed
         }
     }
 `;
@@ -32,8 +28,17 @@ mutation($item: ListItemInput) {
 }
 `;
 
+export const DELETE_ITEM = gql`
+    mutation($id: ID!) {
+        deleteItem(id: $id) {
+            id
+        }
+    }
+`;
+
 export default {
     GET_ITEMS,
     UPDATE_ITEM,
-    ADD_ITEM
+    ADD_ITEM,
+    DELETE_ITEM
 };

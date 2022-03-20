@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { gql, useMutation } from '@apollo/client'
+import React from 'react';
+import { useMutation } from '@apollo/client'
 import ModalWrapper from './ModalWrapper';
 import GqlOps from '../gql/constants';
 

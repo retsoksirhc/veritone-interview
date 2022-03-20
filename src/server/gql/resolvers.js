@@ -39,7 +39,7 @@ export default {
         const index = findItemIndex(items, id);
         items.splice(index, 1)
         await setStorage(items);
-        return items;
+        return { id };
     },
     getItems: async () => await getStorage()
 };
