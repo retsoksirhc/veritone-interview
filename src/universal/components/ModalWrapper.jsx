@@ -55,7 +55,8 @@ export default (props) => {
                     flexDirection: 'column',
                     fontFamily: 'Nunito, sans-serif',
                     fontSize: '1.1em',
-                    borderBottom: isDelete ? 'none' : '4px solid #4d81b7'
+                    borderBottom: isDelete ? 'none' : '4px solid #4d81b7',
+                    zIndex: 2
                 }
             }}
         >
@@ -65,7 +66,7 @@ export default (props) => {
             {!isDelete && (<ItemForm item={item} isCompletedEnabled={isCompletedEnabled} onUpdate={setUpdatedItem} />)}
             <Controls>
                 <BorderlessButton onClick={toggleModal}>Cancel</BorderlessButton>
-                <Button primary onClick={buttonClickHandler} disabled={!updatedItem.name}>{buttonText}</Button>
+                <Button primary onClick={buttonClickHandler} disabled={!isDelete && !updatedItem.name}>{buttonText}</Button>
             </Controls>
         </ReactModal>
     );

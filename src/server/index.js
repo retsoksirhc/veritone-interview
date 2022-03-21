@@ -3,6 +3,7 @@ import express from 'express';
 import {create} from 'express-handlebars';
 import { graphqlHTTP } from 'express-graphql';
 import { buildSchema } from 'graphql';
+import compression from 'compression';
 
 import routes from './routes/index';
 import gqlSchema from './gql/schema';
@@ -13,6 +14,7 @@ const port = 3000;
 const init = async() => {
     const app = express();
     routes.forEach(route => route(app));
+    app.use(compression());
     app.use(express.static('build'));
 
     app.engine('hbs', create({extname: '.hbs'}).engine);

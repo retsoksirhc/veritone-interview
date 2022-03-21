@@ -26,7 +26,7 @@ module.exports = {
           }
         ]
   },
-  devtool: 'inline-source-map',
+  devtool: false,
   optimization: {
     runtimeChunk: 'single'
   },

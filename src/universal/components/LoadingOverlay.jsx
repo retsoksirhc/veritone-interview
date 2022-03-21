@@ -8,6 +8,7 @@ const Overlay = styled.div`
     left: 0;
     height: 100%;
     width: 100%;
+    z-index: 3
 `;
 
 const LoaderContainer = styled.div`
@@ -37,7 +38,7 @@ export default ({loading}) => {
     let timer;
     useEffect(() => {
         if (loading) {
-            timer = setTimeout(() => setShouldShowOverlay(true), 10);
+            timer = setTimeout(() => setShouldShowOverlay(true), 1);
         } else {
             setShouldShowOverlay(false);
             clearTimeout(timer);

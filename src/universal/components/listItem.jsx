@@ -6,6 +6,7 @@ import Checkbox from './Checkbox';
 import EditItemModal from './EditItemModal';
 import DeleteItemModal from './DeleteItemModal';
 import GqlOps from '../gql/constants';
+import LoadingOverlay from './LoadingOverlay';
 
 const ListItem = styled.li`
     border: ${props => props.completed ? "none" : "1px solid #d6d6d6"};
@@ -53,7 +54,7 @@ export default ({ name, description, completed, count, id }) => {
     const toggleEditModal = () => setIsEditModalOpen(!isEditModalOpen);
     const toggleDeleteModal = () => setIsDeleteModalOpen(!isDeleteModalOpen);
 
-    const [ editItem ] = useMutation(GqlOps.UPDATE_ITEM, {
+    const [ editItem, { loading } ] = useMutation(GqlOps.UPDATE_ITEM, {
         refetchQueries: [
             GqlOps.GET_ITEMS
         ]
@@ -82,21 +83,25 @@ export default ({ name, description, completed, count, id }) => {
         id
     }
     return (
-        <ListItem completed={completed}>
-            <CheckboxWrapper>
-                <Checkbox completed={completed} toggleCompleted={toggleCompleted} />
-            </CheckboxWrapper>
+        <>
+            <ListItem completed={completed}>
+                <CheckboxWrapper>
+                    <Checkbox completed={completed} toggleCompleted={toggleCompleted} />
+                </CheckboxWrapper>
 
-            <ItemInfo>
-                <ItemName  completed={completed}>{name}</ItemName>
-                <ItemDescription completed={completed}>{description}</ItemDescription>
-            </ItemInfo>
-            <Controls>
-                <div className="material-icons-outlined" onClick={toggleEditModal}>edit</div>
-                <div className="material-icons-outlined" onClick={toggleDeleteModal}>delete</div>
-            </Controls>
-            <EditItemModal isModalOpen={isEditModalOpen} toggleModal={toggleEditModal} item={item} />
-            <DeleteItemModal isModalOpen={isDeleteModalOpen} toggleModal={toggleDeleteModal} item={item} />
-        </ListItem>
+                <ItemInfo>
+                    <ItemName  completed={completed}>{name}</ItemName>
+                    <ItemDescription completed={completed}>{description}</ItemDescription>
+                </ItemInfo>
+                <Controls>
+                    <div className="material-icons-outlined" onClick={toggleEditModal}>edit</div>
+                    <div className="material-icons-outlined" onClick={toggleDeleteModal}>delete</div>
+                </Controls>
+                <EditItemModal isModalOpen={isEditModalOpen} toggleModal={toggleEditModal} item={item} />
+                <DeleteItemModal isModalOpen={isDeleteModalOpen} toggleModal={toggleDeleteModal} item={item} />
+            </ListItem>
+            <LoadingOverlay loading={loading} />
+        </>
+
     );
             };
