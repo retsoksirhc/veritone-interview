@@ -6,8 +6,12 @@ import ListItem from './ListItem';
 
 const Container = styled.div`
     font-family: 'Nunito', sans-serif;
-    margin: 36px 88px 40px 164px;
+    margin: 36px 88px 40px;
     max-width: 1024px;
+    min-width: 320px;
+    @media (min-width: 800px) {
+        margin: 36px 88px 40px 164px;
+    }
 `;
 
 const List = styled.ul`
