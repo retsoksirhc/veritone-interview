@@ -9,7 +9,7 @@ import GqlOps from '../gql/constants';
 import LoadingOverlay from './LoadingOverlay';
 
 const ListItem = styled.li`
-    border: ${props => props.completed ? "none" : "1px solid #d6d6d6"};
+    border: ${props => props.completed ? "1px solid transparent" : "1px solid #d6d6d6"};
     border-radius: 4px;
     padding: 16px 16px 16px 0;
     margin-bottom: 12px;
@@ -37,6 +37,7 @@ const ItemDescription = styled.p`
 `;
 
 const Controls = styled.div`
+    min-width: 96px; /* prevents edit and delete icons from stacking */
     > div {
         margin: 12px;
         color: #555f7c;

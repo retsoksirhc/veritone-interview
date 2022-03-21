@@ -38,7 +38,7 @@ export default ({loading}) => {
     let timer;
     useEffect(() => {
         if (loading) {
-            timer = setTimeout(() => setShouldShowOverlay(true), 1);
+            timer = setTimeout(() => setShouldShowOverlay(true), 10);
         } else {
             setShouldShowOverlay(false);
             clearTimeout(timer);
