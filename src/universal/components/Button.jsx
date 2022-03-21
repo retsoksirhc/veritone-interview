@@ -14,6 +14,9 @@ export default styled.button`
     &:active {
         background: ${props => props.primary ? "#3891ff;" : "#999999"};
     }
+    &:disabled {
+        background: ${props => props.primary ? "#89b6cd;" : "#ffffff"};
+    }
     font-family: inherit;
     cursor: pointer;
 `;

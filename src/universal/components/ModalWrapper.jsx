@@ -65,7 +65,7 @@ export default (props) => {
             {!isDelete && (<ItemForm item={item} isCompletedEnabled={isCompletedEnabled} onUpdate={setUpdatedItem} />)}
             <Controls>
                 <BorderlessButton onClick={toggleModal}>Cancel</BorderlessButton>
-                <Button primary onClick={buttonClickHandler}>{buttonText}</Button>
+                <Button primary onClick={buttonClickHandler} disabled={!updatedItem.name}>{buttonText}</Button>
             </Controls>
         </ReactModal>
     );
