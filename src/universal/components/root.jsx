@@ -5,7 +5,6 @@ import Header from './Header';
 import EmptyList from './EmptyList';
 import PopulatedList from './PopulatedList';
 import GqlOps from '../gql/constants';
-import Loading from './LoadingOverlay';
 import LoadingOverlay from './LoadingOverlay';
 
 export default () => {

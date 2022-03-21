@@ -6,7 +6,7 @@ import AddItemButton from './AddItemButton';
 const EmptyList = styled.div`
     border: 1px solid #c6c6c6;
     max-width: 530px;
-    margin: 108px auto;
+    margin: 108px 88px;
     padding: 40px;
     text-align: center;
     border-radius: 4px;
@@ -16,6 +16,10 @@ const EmptyList = styled.div`
     align-items: center;
     justify-content: center;
     font-family: 'Nunito', sans-serif;
+
+    @media (min-width: 800px) {
+        margin: 108px auto;
+    }
 `;
 
 const AddFirstItemCopy = styled.p`

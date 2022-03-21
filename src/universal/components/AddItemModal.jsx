@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useMutation } from '@apollo/client';
 
 import ModalWrapper from './ModalWrapper';
