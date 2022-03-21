@@ -1,7 +1,7 @@
 # Veritone Interview Coding Challenge
 This app serves as my completed Veritone interview challenge
 ## Installing and running
-The app is standalone and does not require any database connections or upstream service calls. It is based in Node, and persists data to a local file using node-persist in leiu of spinning up a separate database instance.
+The app is standalone and does not require any database connections or upstream service calls. It is based in Node, and persists data to a local file using node-persist in lieu of spinning up a separate database instance.
 
 ### Requirements
 - A modern version of Node (I used 17.7.1)
