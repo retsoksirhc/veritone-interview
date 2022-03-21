@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 const Overlay = styled.div`
@@ -27,10 +27,29 @@ const LoaderArcs = styled.div`
     animation: spin 1.5s linear infinite;
 `;
 
-export default () => (
-    <Overlay>
-        <LoaderContainer>
-            <LoaderArcs />
-        </LoaderContainer>
-    </Overlay>
-)
+export default ({loading}) => {
+    /**
+     * Debounce for super fast queries
+     * Also helps server side render match hydrated stated because
+     * gql loading props are different server to client.
+     */ 
+    const [ shouldShowOverlay, setShouldShowOverlay ] = useState(false);
+    let timer;
+    useEffect(() => {
+        if (loading) {
+            timer = setTimeout(() => setShouldShowOverlay(true), 10);
+        } else {
+            setShouldShowOverlay(false);
+            clearTimeout(timer);
+            timer = null;
+        }
+        return (() => clearTimeout(timer));
+    }, [loading]);
+    return shouldShowOverlay ? (
+        <Overlay>
+            <LoaderContainer>
+                <LoaderArcs />
+            </LoaderContainer>
+        </Overlay>
+    ) : null;
+};

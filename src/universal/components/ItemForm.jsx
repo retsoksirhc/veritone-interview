@@ -83,7 +83,7 @@ const CharCounter = styled.p`
     color: #7d7a7a;
 `;
 
-const CompletedWrapper = styled.p`
+const CompletedWrapper = styled.div`
     margin-top: 12px;
     display: flex;
     > p {

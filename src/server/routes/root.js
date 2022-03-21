@@ -6,7 +6,7 @@ import {
     ApolloProvider,
     createHttpLink
 } from '@apollo/client';
-import { getDataFromTree } from '@apollo/client/react/ssr';
+import { renderToStringWithData } from '@apollo/client/react/ssr';
 import { ServerStyleSheet } from 'styled-components';
 
 import ShoppingList from '../../universal/components/root';
@@ -34,7 +34,7 @@ const apolloClient = new ApolloClient({
 module.exports = (app) => {
     app.get('/', async (req, res) => {
         const sheet = new ServerStyleSheet();
-        const serverRenderedHtml = await getDataFromTree(
+        const serverRenderedHtml = await renderToStringWithData(
             sheet.collectStyles(
                 <ApolloProvider client={apolloClient}>
                     <ShoppingList />

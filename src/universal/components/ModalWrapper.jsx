@@ -36,6 +36,7 @@ export default (props) => {
     const buttonClickHandler = () => {
         buttonAction(updatedItem);
     };
+    ReactModal.setAppElement('body');
     return (
         <ReactModal
             isOpen={isModalOpen}

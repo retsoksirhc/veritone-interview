@@ -21,7 +21,7 @@ export default () => {
         <>
             <Header>SHOPPING LIST</Header>
             <ListComponent listItems={listItems} />
-            {loading && <LoadingOverlay />}
+            <LoadingOverlay loading={loading} />
         </>
     );
 }
