@@ -11,6 +11,7 @@ The app is standalone and does not require any database connections or upstream 
 ### To install
 ```
 git clone git@github.com:retsoksirhc/veritone-interview.git
+    OR if you don't have ssh keys set up, git clone https://github.com/retsoksirhc/veritone-interview.git
 cd veritone-interview
 npm install
 ```
@@ -40,3 +41,5 @@ For the quantity input on the Add Item form, I threw out a guess that the max am
 For mobile device views, I had to set some min-widths to get the elements to not look bunched. I also decided to get rid of the mismatched left and right margins around the whole list on smaller screens, as it looked a little weird when the right edge was close to the edge of the window but the left wasn't. For below 800px, I just centered the list instead. In a real life scenario, I'd call it out to the designer and suggest centering at the lower breakpoint, but leave the decision ultimately up to them.
 
 From the tech stack list, I used React 17, css/styled-copmponents, Node, Express and GraphQL. I didn't use React-Redux (and therefore also didn't use React-Saga), as I'm using Apollo Client to manage state instead. I didn't use React-Router because I didn't feel it would really give me much benefit; I'm only rendering a few base components, and managing them is done easily enough with just local useState hooks.
+
+I also noticed what I think is a mistake in the copy... on the Add Item modal, the figma mocks show the primary action button with 'Add Task', but the rest of the mocks call it an 'Item' not a 'Task'... I left it as 'Add Task' but normally I'd check with whoever wrote the copy to see if they actually intended to do that.
