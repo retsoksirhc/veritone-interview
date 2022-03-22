@@ -72,6 +72,7 @@ const Textarea = styled.textarea`
     font-size: 0.9em;
     font-family: Nunito, sans-serif;
     color: inherit;
+    resize: none;
 `;
 
 const CharCounter = styled.p`
