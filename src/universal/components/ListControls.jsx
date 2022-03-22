@@ -7,8 +7,8 @@ const Controls = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: flex-end;
-    font-size: 1.15em;
+    align-items: center;
+    font-size: 1.25em;
     font-weight: bold;
 `;
 

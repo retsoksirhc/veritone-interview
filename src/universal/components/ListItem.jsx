@@ -26,14 +26,17 @@ const ItemInfo = styled.div`
 const ItemName = styled.p`
     color: ${props => props.completed ? "#4d81b7" : "#000000"};
     text-decoration: ${props => props.completed ? "line-through" : "none"};
-    line-height: 2em;
+    line-height: 1.25em;
     font-weight: bold;
+    word-break: break-word;
+    margin-bottom: 0.75em;
 `;
 
 const ItemDescription = styled.p`
     text-decoration: ${props => props.completed ? "line-through" : "none"};
     font-size: 0.9em;
     color: #7d7a7a;
+    word-break: break-word;
 `;
 
 const Controls = styled.div`
