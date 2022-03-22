@@ -43,3 +43,5 @@ For mobile device views, I had to set some min-widths to get the elements to not
 From the tech stack list, I used React 17, css/styled-copmponents, Node, Express and GraphQL. I didn't use React-Redux (and therefore also didn't use React-Saga), as I'm using Apollo Client to manage state instead. I didn't use React-Router because I didn't feel it would really give me much benefit; I'm only rendering a few base components, and managing them is done easily enough with just local useState hooks.
 
 I also noticed what I think is a mistake in the copy... on the Add Item modal, the figma mocks show the primary action button with 'Add Task', but the rest of the mocks call it an 'Item' not a 'Task'... I left it as 'Add Task' but normally I'd check with whoever wrote the copy to see if they actually intended to do that.
+
+For the purposes of this challenge, I didn't include any UI for handling errors. If this was a real production app, I would do something like material-ui error alerts when Apollo Client reported an error for a query or mutation, but that's also something I would normally check with design on to make sure they were okay with the way it looked.
